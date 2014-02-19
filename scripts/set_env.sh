@@ -33,17 +33,17 @@ export PATH=$HOME/.cabal/bin:/opt/ghc/$GHCVER/bin:$PATH
 export CABAL=cabal-$CABALVER
 
 # Constrain TH to the version we've got
-case "$GHCVER" in
-7.4*)
-  export CABAL_CONSTRAINTS="--constraint=template-haskell==2.7.0.0"
-  ;;
-7.6*)
-  export CABAL_CONSTRAINTS="--constraint=template-haskell==2.8.0.0"
-  ;;
-7.8*)
-  export SKIP_HADDOCK=1
-  ;;
-esac
+#case "$GHCVER" in
+#7.4*)
+#  export CABAL_CONSTRAINTS="--constraint=template-haskell==2.7.0.0"
+#  ;;
+#7.6*)
+#  export CABAL_CONSTRAINTS="--constraint=template-haskell==2.8.0.0"
+#  ;;
+#7.8*)
+#  export SKIP_HADDOCK=1
+#  ;;
+#esac
 
 echo "Using cabal command: $CABAL"
 echo "  with constraints: $CABAL_CONSTRAINTS"

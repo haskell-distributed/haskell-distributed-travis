@@ -9,11 +9,14 @@ sudo add-apt-repository -y ppa:hvr/ghc\
 	 echo "Installing Ubuntu packages: $UBUNTU_PKGS"
 	 sudo apt-get install $UBUNTU_PKGS
      fi\
-  && HEAD_BRANCH=$(python travis/scripts/head_branch.py)\
+  && python travis/scripts/head_branch.py >> HEAD_BRANCH \
+  && git clone http://github.com/haskell-distributed/cloud-haskell cloud-haskell \
+  && git --git-dir=cloud-haskell/.git --work-tree=cloud-haskell checkout $HEAD_BRANCH \
+  && cp cloud-haskell/build.mk . \
   && for DEP in $HEAD_DEPS
      do
        echo "Cloning $DEP from github..."
-       git clone --quiet git://github.com/diagrams/$DEP.git
+       git clone --quiet git://github.com/haskell-distributed/$DEP.git
        cd $DEP
        if git branch -a |grep -x "  remotes/origin/${HEAD_BRANCH}" > /dev/null; then git checkout ${HEAD_BRANCH}; fi
        cd ..

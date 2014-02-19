@@ -1,10 +1,6 @@
 #!/bin/bash
 
-INSTALL_CMD="$CABAL install --enable-tests --enable-benchmarks --only-dependencies $CABAL_FLAGS $CABAL_CONSTRAINTS -j$NUM_CPU"
-
 ./travis/scripts/install-deps.sh\
   && echo "============================================================"\
   && echo "Installing"\
-  && echo $INSTALL_CMD\
-  && $INSTALL_CMD --dry-run -v3\
-  && $INSTALL_CMD
+  && make -j BRANCH=`cat HEAD_BRANCH` install-deps

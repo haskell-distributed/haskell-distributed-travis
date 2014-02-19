@@ -7,9 +7,7 @@ if [[ $GHCVER == "head" || -n "$SKIP_HADDOCK" ]]
     DOCBUILD="$CABAL haddock"
 fi
 
-$CABAL configure --enable-tests --enable-benchmarks -v2 $CABAL_FLAGS\
-  && $CABAL build --ghc-options='-Wall -Werror'\
-  && $CABAL test\
+make BRANCH=`cat HEAD_BRANCH` test
   && $DOCBUILD\
   && $CABAL check\
   && $CABAL sdist
