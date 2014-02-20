@@ -1,6 +1,7 @@
 #!/bin/bash
 
+CB=`cat HEAD_BRANCH`
 ./travis/scripts/install-deps.sh\
   && echo "============================================================"\
-  && echo "Installing"\
-  && make -j BRANCH=`cat HEAD_BRANCH` install-deps
+  && echo "Installing to $CB"\
+  && make -j BRANCH=$CB BASE_DIR=`pwd` install-deps
