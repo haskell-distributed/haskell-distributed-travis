@@ -14,6 +14,6 @@ else:
         os.environ['TRAVIS_PULL_REQUEST'] )
     req = urllib.urlopen(url)
     j = json.load(req)
-    # should we check here that the head is actually from the same
-    # repo, not a fork?
-    print(j['head']['ref'])
+    # we use the branch name from the base of the pull request (e.g. development),
+    # rather than the branch name from the fork (e.g. fix-xxx).
+    print(j['base']['ref'])
