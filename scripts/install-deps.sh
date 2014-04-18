@@ -2,7 +2,7 @@ $CABAL update\
   && $CABAL install alex happy cpphs -j$NUM_CPU\
   && if ! [[ $GHCVER == "head" || -n $SKIP_HADDOCK ]]
        then
-         $CABAL install haddock -j$NUM_CPU
+         $CABAL install 'haddock < 2.14' -j$NUM_CPU
      fi\
   && if ! [[ -z "$EXTRA_DEPS_PRE" ]]
        then
